@@ -3,6 +3,7 @@
             [re-frame.core :as rf]
             ["@smooth-ui/core-sc" :refer [Normalize Button ThemeProvider]]
             [app.theme :refer [cheffy-theme]]
+            [app.nav.events]
             [app.db]
             [app.nav.views.nav :refer [nav]]))
 
