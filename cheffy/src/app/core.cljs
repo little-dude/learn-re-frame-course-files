@@ -1,11 +1,13 @@
 (ns app.core
   (:require [reagent.core :as r]
             [re-frame.core :as rf]
-            ["@smooth-ui/core-sc" :refer [Normalize Button ThemeProvider]]
-            [app.theme :refer [cheffy-theme]]
-            [app.nav.events]
             [app.db]
-            [app.nav.views.nav :refer [nav]]))
+            ;; -- nav ---
+            [app.nav.views.nav :refer [nav]]
+            [app.nav.events]
+            [app.nav.subs]
+            [app.theme :refer [cheffy-theme]]
+            ["@smooth-ui/core-sc" :refer [Normalize ThemeProvider Button]]))
 
 (defn app
   []

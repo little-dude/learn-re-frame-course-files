@@ -5,5 +5,5 @@
   []
   (let [user true]
     (if user
-      authenticated
+      [authenticated]
       "public")))

@@ -1,11 +1,12 @@
 (ns app.nav.views.authenticated
-  (:require ["@smooth-ui/core-sc" :refer [Box]]
-            [re-frame.core :as rf]
-            [app.nav.views.nav-item :refer [nav-item]]))
+  (:require [re-frame.core :as rf]
+            [app.nav.views.nav-item :refer [nav-item]]
+            ["@smooth-ui/core-sc" :refer [Box]]))
 
 (defn authenticated
   []
-  (let [nav-items [{:id :saved
+  (let [active-nav @(rf/subscribe [:active-nav])
+        nav-items [{:id :saved
                     :name "Saved"
                     :href "#saved"
                     :dispatch #(rf/dispatch [:set-active-nav :saved])}
@@ -13,7 +14,7 @@
                     :name "Recipes"
                     :href "#recipes"
                     :dispatch #(rf/dispatch [:set-active-nav :recipes])}
-                   {:id :inbox
+                   {:id :inboxes
                     :name "Inbox"
                     :href "#inbox"
                     :dispatch #(rf/dispatch [:set-active-nav :inboxes])}
@@ -25,6 +26,13 @@
                     :name "Profile"
                     :href "#profile"
                     :dispatch #(rf/dispatch [:set-active-nav :profile])}]]
-  [:> Box {:display "flex" :justify-content "flex-end" :py 1}
-   (for [item nav-items]
-     [nav-item item])]))
+    [:> Box {:display "flex"
+             :justify-content "flex-end"
+             :py 1}
+     (for [{:keys [id name href dispatch]} nav-items]
+       [nav-item {:key id
+                  :id id
+                  :name name
+                  :href href
+                  :dispatch dispatch
+                  :active-nav active-nav}])]))
