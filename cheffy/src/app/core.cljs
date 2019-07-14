@@ -3,14 +3,15 @@
             [re-frame.core :as rf]
             ["@smooth-ui/core-sc" :refer [Normalize Button ThemeProvider]]
             [app.theme :refer [cheffy-theme]]
-            [app.db]))
+            [app.db]
+            [app.nav.views.nav :refer [nav]]))
 
 (defn app
   []
   [:<>
    [:> Normalize]
    [:> ThemeProvider {:theme cheffy-theme}
-    [:> Button {:variant "info"} "Hello!"]]])
+    [nav]]])
 
 (defn ^:dev/after-load start
   []
